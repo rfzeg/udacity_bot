@@ -2,6 +2,8 @@
 
 <launch>
 
+<include file="$(find udacity_bot)/launch/robot_description.launch"/>
+
   <arg name="world" default="empty"/> 
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
@@ -17,5 +19,9 @@
     <arg name="headless" value="$(arg headless)"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
+
+<!--spawn a robot in gazebo world-->
+<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" 
+output="screen" args="-urdf -param robot_description -model udacity_bot"/>
 
 </launch>
