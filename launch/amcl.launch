@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Map server -->
+  <arg name="map_file" default="$(find udacity_bot)/maps/jackal_race.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- Localization-->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <remap from="scan" to="udacity_bot/laser/scan"/>
+    <param name="odom_frame_id" value="odom"/>
+    <param name="odom_model_type" value="diff-corrected"/>
+    <param name="base_frame_id" value="robot_footprint"/>
+    <param name="global_frame_id" value="map"/>
+  </node>
+
+</launch>
