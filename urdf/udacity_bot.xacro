@@ -2,6 +2,8 @@
 
 <robot name="udacity_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+<xacro:include filename="$(find udacity_bot)/urdf/udacity_bot.gazebo" />
+
   <link name="robot_footprint"></link>
 
   <joint name="robot_footprint_joint" type="fixed">
