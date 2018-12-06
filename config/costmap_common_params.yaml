@@ -3,7 +3,7 @@ map_type: costmap
 obstacle_range: 0.0
 raytrace_range: 0.0
 
-transform_tolerance: 0.0
+transform_tolerance: 1.0
 
 inflation_radius: 0.0
 
