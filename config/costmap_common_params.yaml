@@ -5,6 +5,9 @@ raytrace_range: 0.0
 
 transform_tolerance: 1.0
 
+# define the coordinates of the robot outline
+footprint: [[0.25, 0.2], [0.25, -0.2], [-0.25, -0.2], [-0.25, 0.2]]
+
 inflation_radius: 0.0
 
 observation_sources: laser_scan_sensor
