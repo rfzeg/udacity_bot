@@ -1,3 +1,12 @@
+controller_frequency: 3.0 # rate at which this controller will be called in Hz (default: 20.0)
+planner_frequency: 0.5 # to handle new goals, in Hz (default: 0.0)
+
 TrajectoryPlannerROS:
 
   holonomic_robot: false
+
+
+
+
+
+
