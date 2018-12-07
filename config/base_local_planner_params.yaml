@@ -4,9 +4,12 @@ planner_frequency: 0.5 # to handle new goals, in Hz (default: 0.0)
 TrajectoryPlannerROS:
 
   holonomic_robot: false
+  
+  # Parameters for setting the velocity limits of the robot
+  max_vel_x: 0.3 # maximum forward velocity allowed for the base in mt/s (default: 0.5)
 
-
-
+  # Parameters for scoring trajectories
+  pdist_scale: 0.8 # weighting for how much the local path should stay close to the global path (default: 0.6)
 
 
 
