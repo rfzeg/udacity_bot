@@ -6,11 +6,7 @@ raytrace_range: 5.0
 transform_tolerance: 1.0
 
 # define the coordinates of the robot outline
-footprint: [[0.25, 0.2], [0.25, -0.2], [-0.25, -0.2], [-0.25, 0.2]]
-
-cost_scaling_factor:  5.0  # exponential rate at which the obstacle cost drops off 
-inflation_radius:     1.0  # max. distance from an obstacle at which costs are incurred for planning paths
-
+footprint: [[0.25,0.16],[0.25,-0.16],[-0.25,-0.16],[-0.25,0.16]]
 
 observation_sources: laser_scan_sensor
 

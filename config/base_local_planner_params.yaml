@@ -10,6 +10,10 @@ TrajectoryPlannerROS:
 
   # Parameters for scoring trajectories
   pdist_scale: 0.8 # weighting for how much the local path should stay close to the global path (default: 0.6)
+  
+  # Foward simulation parameters
+  # Parameters that determine how far in advance and with what granularity trajectories are simulated
+  sim_time: 1.5  # The amount of time to forward-simulate trajectories in seconds, a higher value can result in slightly smoother trajectories (default: 1.0)
 
 
 
