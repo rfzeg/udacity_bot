@@ -7,13 +7,14 @@ TrajectoryPlannerROS:
   
   # Parameters for setting the velocity limits of the robot
   max_vel_x: 0.3 # maximum forward velocity allowed for the base in mt/s (default: 0.5)
+  min_vel_x: 0.05 # minimum forward velocity allowed, should be high enough to overcome friction
 
   # Parameters for scoring trajectories
   pdist_scale: 0.8 # weighting for how much the local path should stay close to the global path (default: 0.6)
+  meter_scoring: true #  whether or not assume that goal_distance and path_distance are expressed in meters (default: false)
   
   # Foward simulation parameters
   # Parameters that determine how far in advance and with what granularity trajectories are simulated
   sim_time: 1.5  # The amount of time to forward-simulate trajectories in seconds, a higher value can result in slightly smoother trajectories (default: 1.0)
-
 
 
