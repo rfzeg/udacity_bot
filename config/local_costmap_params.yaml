@@ -11,3 +11,5 @@ local_costmap:
    
    inflation_radius: 0.4  # max. distance from an obstacle at which costs are incurred for planning paths
    cost_scaling_factor:  0.4  # exponential rate at which the obstacle cost drops off 
+   
+   publish_cost_grid: true # to visualize the cost function produced by the local planner in rviz
