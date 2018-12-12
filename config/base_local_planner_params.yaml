@@ -10,11 +10,13 @@ TrajectoryPlannerROS:
   min_vel_x: 0.05 # minimum forward velocity allowed, should be high enough to overcome friction
 
   # Parameters for scoring trajectories
-  pdist_scale: 0.8 # weighting for how much the local path should stay close to the global path (default: 0.6)
+  pdist_scale: 2.0 # weighting for how much the local path should stay close to the global path (default: 0.6)
+  gdist_scale: 3.0 # weighting for how much the controller should attempt to reach its local goal, also controls speed (default 0.8)
+  occdist_scale: 0.2 # weighting for how much the controller should attempt to avoid obstacles (default 0.01)
   meter_scoring: true #  whether or not assume that goal_distance and path_distance are expressed in meters (default: false)
   
   # Foward simulation parameters
   # Parameters that determine how far in advance and with what granularity trajectories are simulated
-  sim_time: 1.5  # The amount of time to forward-simulate trajectories in seconds, a higher value can result in slightly smoother trajectories (default: 1.0)
+  sim_time: 4.0  # The amount of time to forward-simulate trajectories in seconds, a higher value can result in slightly smoother trajectories (default: 1.0)
 
 
