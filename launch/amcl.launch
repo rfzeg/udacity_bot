@@ -111,6 +111,8 @@
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
     <param name="base_local_planner" value="$(arg base_local_planner)"/>  
 
+    <param name="controller_frequency" type="double" value="3"/>
+    
   </node>
 
 </launch>
