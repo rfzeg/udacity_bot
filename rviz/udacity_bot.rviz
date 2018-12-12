@@ -6,8 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /PointCloud21
         - /PointCloud21/Autocompute Value Bounds1
+        - /CurrentGoal1
       Splitter Ratio: 0.5
     Tree Height: 417
   - Class: rviz/Selection
@@ -144,6 +144,7 @@ Visualization Manager:
         LocalObstacles: true
         LocalPath: true
         Map: true
+        PointCloud2: true
         Polygon: true
         PoseArray: true
         RobotModel: true
@@ -256,7 +257,7 @@ Visualization Manager:
         Min Value: -0.107796505
         Value: true
       Axis: Z
-      Channel Name: path_cost
+      Channel Name: total_cost
       Class: rviz/PointCloud2
       Color: 255; 255; 255
       Color Transformer: Intensity
@@ -264,9 +265,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 0; 0
-      Max Intensity: 466
+      Max Intensity: 2318
       Min Color: 170; 255; 0
-      Min Intensity: 3
+      Min Intensity: 20
       Name: PointCloud2
       Position Transformer: XYZ
       Queue Size: 10
@@ -277,7 +278,22 @@ Visualization Manager:
       Topic: /move_base/TrajectoryPlannerROS/cost_cloud
       Unreliable: false
       Use Fixed Frame: true
-      Use rainbow: true
+      Use rainbow: false
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.100000001
+      Class: rviz/Pose
+      Color: 0; 0; 255
+      Enabled: true
+      Head Length: 0.300000012
+      Head Radius: 0.100000001
+      Name: CurrentGoal
+      Shaft Length: 1
+      Shaft Radius: 0.0500000007
+      Shape: Arrow
+      Topic: /move_base/current_goal
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
@@ -303,7 +319,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -0.0650000051
+      Angle: -0.119999811
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
@@ -313,7 +329,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 23.9217396
+      Scale: 59.6656494
       Target Frame: chassis
       Value: TopDownOrtho (rviz)
       X: 0
@@ -337,5 +353,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1536
-  X: -1
-  Y: -26
+  X: 0
+  Y: 0
