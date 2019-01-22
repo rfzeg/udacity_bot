@@ -104,4 +104,9 @@
     <material>Gazebo/Black</material>
   </gazebo>
 
+ <!-- camera -->
+ <gazebo reference="camera">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
 </robot>
