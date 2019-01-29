@@ -20,8 +20,8 @@
   </include>
 
 <!--spawn a robot in gazebo world-->
-	<arg name= "pos_x" default = "6"/>
-	<arg name= "pos_y" default = "5"/>
+	<arg name= "pos_x" default = "0"/>
+	<arg name= "pos_y" default = "0"/>
 	<arg name= "pos_z" default = "0"/>
 	<arg name= "yaw" default = "0"/>
 	<arg name= "robot_name" default= "udacity_bot"/>
