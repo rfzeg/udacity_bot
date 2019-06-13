@@ -2,7 +2,7 @@
 Author: Roberto Zegers R.
 
 ## Abstract
-The package contains a URDF model of a differential drive robot equipped with an camera and laser sensor.
+The package contains a URDF model of a differential drive robot equipped with a camera and laser sensor.
 
 <img src="https://raw.githubusercontent.com/rfzeg/udacity_bot/master/docs/imgs/udacity_bot.png">
 Fig.1 Image of the robot model in Gazebo (coke_can model shown for size comparison).  
@@ -31,6 +31,10 @@ Fig.1 Image of the robot model in Gazebo (coke_can model shown for size comparis
 - Clone this repository into a ROS catkin workspace
 - Build and source the workspace
 - To launch this package including the Jackal Race Gazebo world and Rviz: `roslaunch udacity_bot udacity_world.launch`  
+or:  
+- To spawn the robot into another already opened Gazebo world:  
+`roslaunch udacity_bot robot_description.launch`  
+`roslaunch udacity_bot spawn_udacity_bot.launch`  
 
 If you want to move the robot using a keyboard you will also need to start a teleop node.  
 To run the AMCL localization node and use the robot with the Navigation Stack type in a new window: `roslaunch udacity_bot amcl.launch`  
@@ -40,6 +44,7 @@ To view raw images on the topic /camera/rgb/image_raw, use:
 
 ## Known Issues
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
-+ Most of the visual robot model shapes are not shown or are displayed collapsed on Rviz: make sure to run robot_state_publisher to publish transforms for all joints. Do it by running `roslaunch udacity_bot robot_description.launch`  
++ Most of the visual robot model shapes are not shown or are displayed collapsed on Rviz: make sure to run robot_state_publisher to publish transforms for all joints.  
+  Do it by running `roslaunch udacity_bot robot_description.launch`  
 
 This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazebo 7.0 and 7.15.
