@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
+
+<!-- Determine use of Rviz GUI -->
+<arg name="use_rviz" default="false" />
+
 <include file="$(find udacity_bot)/launch/robot_description.launch"/>
 
   <arg name="world" default="empty"/> 
@@ -19,7 +23,7 @@
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
-<!--spawn a robot in gazebo world-->
+<!-- Spawn a robot in gazebo world-->
 	<arg name= "pos_x" default = "0"/>
 	<arg name= "pos_y" default = "0"/>
 	<arg name= "pos_z" default = "0"/>
@@ -35,7 +39,7 @@
 	-model $(arg robot_name)"
 	respawn="false" output="screen"/>
 
-<!--launch rviz with configuration file-->
-<node type="rviz" name="rviz" pkg="rviz" respawn="false" args="-d $(find udacity_bot)/rviz/udacity_bot.rviz"/>
+<!-- Run Rviz with configuration file -->
+<node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d $(find udacity_bot)/rviz/udacity_bot.rviz"/>
 
 </launch>
