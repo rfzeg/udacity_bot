@@ -30,7 +30,8 @@ Fig.1 Image of the robot model in Gazebo (coke_can model shown for size comparis
 ## Direct usage
 - Clone this repository into a ROS catkin workspace
 - Build and source the workspace
-- To launch this package including the Jackal Race Gazebo world and Rviz: `roslaunch udacity_bot udacity_world.launch`  
+- To view this robot model on an empty Gazebo world: `roslaunch udacity_bot empty_world.launch`  
+- To launch this package including the Jackal Race Gazebo world and Rviz: `roslaunch udacity_bot udacity_world.launch use_rviz:=true`  
 or:  
 - To spawn the robot into another already opened Gazebo world:  
 `roslaunch udacity_bot robot_description.launch`  

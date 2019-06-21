@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Start upload of robot description, Gazebo world, spawns a robot, Rviz (if set) -->
+
+<launch>
+
+<!-- Determine use of Rviz GUI -->
+<arg name="use_rviz" default="false" />
+
+<include file="$(find udacity_bot)/launch/robot_description.launch"/>
+
+<!-- Arguments that can be passed to this launch file from the CLI, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="physics" default="ode"/>
+  <arg name="extra_gazebo_args" default="--verbose"/>
+  <!-- Configure as required -->
+  <arg name="world_name" default="worlds/empty.world"/>
+  <!--<arg name="world_name" value="$(find udacity_bot)/worlds/jackal_race.world"/>-->
+
+  <!-- Launch Gazebo with the specified arguments -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="physics" default="$(arg physics)"/>
+    <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>
+    <arg name="world_name" value="$(arg world_name)" /> 
+  </include>
+
+<!-- Spawn a robot in Gazebo world-->
+	<arg name= "pos_x" default = "0"/>
+	<arg name= "pos_y" default = "0"/>
+	<arg name= "pos_z" default = "0"/>
+	<arg name= "yaw" default = "0"/>
+	<arg name= "robot_name" default= "udacity_bot"/>
+	<node name="urdf_robot_model_spawner" pkg="gazebo_ros" type="spawn_model"
+	args="-param robot_description
+	-urdf
+	-x $(arg pos_x)
+	-y $(arg pos_y)
+	-z $(arg pos_z)
+	-Y $(arg yaw)
+	-model $(arg robot_name)"
+	respawn="false" output="screen"/>
+
+<!-- Run Rviz with configuration file -->
+<node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d $(find udacity_bot)/rviz/udacity_bot.rviz"/>
+
+</launch>
