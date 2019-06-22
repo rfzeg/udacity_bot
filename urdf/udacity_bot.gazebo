@@ -5,20 +5,30 @@
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <legacyMode>false</legacyMode>
       <alwaysOn>true</alwaysOn>
-      <updateRate>10</updateRate>
-      <leftJoint>left_wheel_hinge</leftJoint>
-      <rightJoint>right_wheel_hinge</rightJoint>
-      <wheelSeparation>0.4</wheelSeparation>
-      <wheelDiameter>0.2</wheelDiameter>
-      <torque>10</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>robot_footprint</robotBaseFrame>
+      <!-- Topic name on which to publish the linear and angular velocity of the robot -->
+      <commandTopic> cmd_vel </commandTopic>
+      <odometryTopic> odom </odometryTopic>
+      <!-- Set the name of the odometry frame for this robot -->
+      <odometryFrame> odom </odometryFrame>
+      <odometrySource> world </odometrySource>
+      <publishOdomTF> true </publishOdomTF>
+      <!-- Set the name of the TF frame for the base (root) link of the robot -->
+      <robotBaseFrame> robot_footprint </robotBaseFrame>
+      <publishWheelTF> false </publishWheelTF>
+      <publishTf> true </publishTf>
+      <publishWheelJointState> true </publishWheelJointState>
+      <updateRate> 10 </updateRate> <!-- frequency in (Hz) published by the plugin -->
+      <leftJoint> left_wheel_hinge </leftJoint>
+      <rightJoint> right_wheel_hinge </rightJoint>
+      <wheelSeparation> 0.4 </wheelSeparation>
+      <wheelDiameter> 0.2 </wheelDiameter>
+      <wheelAcceleration> 1  </wheelAcceleration>
+      <wheelTorque> 10 </wheelTorque>
+      <rosDebugLevel> na </rosDebugLevel> <!-- <rosDebugLevel>Debug</rosDebugLevel> -->
     </plugin>
   </gazebo>
 
-
+<!-- camera -->
   <gazebo reference="camera">
     <sensor type="camera" name="camera1">
       <update_rate>30.0</update_rate>
@@ -51,7 +61,7 @@
     </sensor>
   </gazebo>
 
-  <!-- hokuyo -->
+<!-- hokuyo laser scanner -->
   <gazebo reference="hokuyo">
     <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -87,6 +97,8 @@
       </plugin>
     </sensor>
   </gazebo>
+
+<!-- Colors -->
 
   <!-- chassis -->
   <gazebo reference="chassis">
