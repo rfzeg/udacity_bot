@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Sends URDF to param server and spawns robot in Gazebo world -->
+<!-- Requires: Gazebo simlation running -->
 <launch>
 
-<!-- Requires: Gazebo world and urdf 'robot_description' in parameter server (e.g. rosrun udacity_bot robot_description.launch) -->
-  
+<!-- Send URDF to parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find udacity_bot)/urdf/udacity_bot.xacro'" />
+
+<!-- Send joint values from simulation -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+
+<!-- Send robot states to tf -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
 <!-- Spawn robot in Gazebo -->
 	<arg name= "pos_x" default = "0"/>
 	<arg name= "pos_y" default = "0"/>

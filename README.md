@@ -34,7 +34,6 @@ Fig.1 Image of the robot model in Gazebo (coke_can model shown for size comparis
 - To launch this package including the Jackal Race Gazebo world and Rviz: `roslaunch udacity_bot udacity_world.launch use_rviz:=true`  
 or:  
 - To spawn the robot into another already opened Gazebo world:  
-`roslaunch udacity_bot robot_description.launch`  
 `roslaunch udacity_bot spawn_udacity_bot.launch`  
 
 If you want to move the robot using a keyboard you will also need to start a teleop node.  
