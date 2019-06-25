@@ -1,4 +1,4 @@
-# ROS udacity_bot package
+# ROS udacity_bot robot model package
 Author: Roberto Zegers R.
 
 ## Abstract
@@ -11,7 +11,11 @@ Fig.1 Image of the robot model in Gazebo (coke_can model shown for size comparis
 + Image Topic: /udacity_bot/camera1/image_raw
 + Image Info Topic:/udacity_bot/camera1/camera_info
 + Laser Scan Topic: /udacity_bot/laser/scan
++ Odometry Topic: /odom
 + Movement Commands: /cmd_vel
+
+To spaw the robot into a running Gazebo simulation with a custom Odometry Topic append an argument like this:  
+`$ roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect`
 
 ## Repository architecture
 ### Directories

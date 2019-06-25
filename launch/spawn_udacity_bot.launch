@@ -3,8 +3,16 @@
 <!-- Requires: Gazebo simlation running -->
 <launch>
 
+<!-- Set these arguments as reuired -->
+<arg name="odometryTopic" default="odom" />
+<arg name="odometryFrame" default="odom" />
+<arg name="robotBaseFrame" default="robot_footprint" />
+
 <!-- Send URDF to parameter server -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find udacity_bot)/urdf/udacity_bot.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find udacity_bot)/urdf/udacity_bot.xacro'
+                                           odometryTopic:=$(arg odometryTopic)
+                                           odometryFrame:=$(arg odometryFrame)
+                                           robotBaseFrame:=$(arg robotBaseFrame)" />
 
 <!-- Send joint values from simulation -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

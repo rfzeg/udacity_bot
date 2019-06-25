@@ -7,13 +7,13 @@
       <alwaysOn>true</alwaysOn>
       <!-- Topic name on which to publish the linear and angular velocity of the robot -->
       <commandTopic> cmd_vel </commandTopic>
-      <odometryTopic> odom </odometryTopic>
+      <odometryTopic>$(arg odometryTopic)</odometryTopic>
       <!-- Set the name of the odometry frame for this robot -->
-      <odometryFrame> odom </odometryFrame>
+      <odometryFrame>$(arg odometryFrame)</odometryFrame>
       <odometrySource> world </odometrySource>
-      <publishOdomTF> true </publishOdomTF>
       <!-- Set the name of the TF frame for the base (root) link of the robot -->
-      <robotBaseFrame> robot_footprint </robotBaseFrame>
+      <robotBaseFrame>$(arg robotBaseFrame)</robotBaseFrame>
+      <publishOdomTF> true </publishOdomTF>
       <publishWheelTF> false </publishWheelTF>
       <publishTf> true </publishTf>
       <publishWheelJointState> true </publishWheelJointState>
