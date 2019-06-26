@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Sends URDF to param server and spawns robot in Gazebo world -->
-<!-- Requires: Gazebo simlation running -->
+<!-- Requires: Gazebo simulation running -->
 <launch>
 
-<!-- Set these arguments as reuired -->
+<!-- Set these arguments as required -->
+<!-- Configure differential drive controller Gazebo plugin -->
 <arg name="odometryTopic" default="odom" />
 <arg name="odometryFrame" default="odom" />
 <arg name="robotBaseFrame" default="robot_footprint" />
+<arg name="diff_drive_publishTf" default="true" />
+<arg name="diff_drive_publishOdomTF" default="true" />
+<!-- Configure ground truth odometry Gazebo plugin -->
+<arg name="p3d_base_controller_enabled" default="false" />
 
 <!-- Send URDF to parameter server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find udacity_bot)/urdf/udacity_bot.xacro'
                                            odometryTopic:=$(arg odometryTopic)
                                            odometryFrame:=$(arg odometryFrame)
-                                           robotBaseFrame:=$(arg robotBaseFrame)" />
+                                           robotBaseFrame:=$(arg robotBaseFrame)
+                                           diff_drive_publishTf:=$(arg diff_drive_publishTf)
+                                           diff_drive_publishOdomTF:=$(arg diff_drive_publishOdomTF)
+                                           p3d_base_controller_enabled:=$(arg p3d_base_controller_enabled)" />
 
 <!-- Send joint values from simulation -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

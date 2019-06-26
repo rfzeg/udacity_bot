@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
@@ -13,11 +13,12 @@
       <odometrySource> world </odometrySource>
       <!-- Set the name of the TF frame for the base (root) link of the robot -->
       <robotBaseFrame>$(arg robotBaseFrame)</robotBaseFrame>
-      <publishOdomTF> true </publishOdomTF>
+      <publishOdomTF>$(arg diff_drive_publishOdomTF)</publishOdomTF>
       <publishWheelTF> false </publishWheelTF>
-      <publishTf> true </publishTf>
+      <publishTf>$(arg diff_drive_publishTf)</publishTf>
       <publishWheelJointState> true </publishWheelJointState>
-      <updateRate> 10 </updateRate> <!-- frequency in (Hz) published by the plugin -->
+      <!-- Frequency in (Hz) published by the plugin -->
+      <updateRate> 10 </updateRate>
       <leftJoint> left_wheel_hinge </leftJoint>
       <rightJoint> right_wheel_hinge </rightJoint>
       <wheelSeparation> 0.4 </wheelSeparation>
@@ -27,6 +28,27 @@
       <rosDebugLevel> na </rosDebugLevel> <!-- <rosDebugLevel>Debug</rosDebugLevel> -->
     </plugin>
   </gazebo>
+
+<!-- Ground truth odometry -->
+<!-- This plugin provides ground truth pose information as a nav_msgs/Odometry message -->
+<!-- If that message is fed into a pose_message_to_tf node it is possible to generate ground truth global localization tf data -->
+
+<xacro:if value="$(arg p3d_base_controller_enabled)">
+<gazebo>
+  <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>50.0</updateRate>
+    <bodyName>$(arg robotBaseFrame)</bodyName>
+    <topicName>ground_truth/state</topicName>
+    <gaussianNoise>0.00</gaussianNoise>
+    <frameName>map</frameName> <!-- <frameName>world</frameName> -->
+    <!-- origin is at spawn location -->
+    <xyzOffsets>0 0 0</xyzOffsets>
+    <rpyOffsets>0 0 0</rpyOffsets>
+  </plugin>
+</gazebo>
+</xacro:if>
+
 
 <!-- camera -->
   <gazebo reference="camera">
