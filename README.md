@@ -2,7 +2,7 @@
 Author: Roberto Zegers R.
 
 ## Abstract
-The package contains a URDF model of a differential drive robot equipped with a camera and laser sensor.
+This package contains a URDF model of a differential drive robot equipped with a camera and laser sensor.
 
 <img src="https://raw.githubusercontent.com/rfzeg/udacity_bot/master/docs/imgs/udacity_bot.png">
 Fig.1 Image of the robot model in Gazebo (coke_can model shown for size comparison).  
@@ -34,17 +34,25 @@ To spaw the robot into a running Gazebo simulation with a custom Odometry Topic 
 ## Direct usage
 - Clone this repository into a ROS catkin workspace
 - Build and source the workspace
-- To view this robot model on an empty Gazebo world: `roslaunch udacity_bot empty_world.launch`  
-- To launch this package including the Jackal Race Gazebo world and Rviz: `roslaunch udacity_bot udacity_world.launch use_rviz:=true`  
+- To view this robot model on an empty Gazebo world: `$ roslaunch udacity_bot empty_world.launch`  
+- To launch this package including the Jackal Race Gazebo world and Rviz: `$ roslaunch udacity_bot udacity_world.launch use_rviz:=true`  
 or:  
 - To spawn the robot into another already opened Gazebo world:  
-`roslaunch udacity_bot spawn_udacity_bot.launch`  
+`$ roslaunch udacity_bot spawn_udacity_bot.launch`  
 
 If you want to move the robot using a keyboard you will also need to start a teleop node.  
 To run the AMCL localization node and use the robot with the Navigation Stack type in a new window: `roslaunch udacity_bot amcl.launch`  
 
 To view raw images on the topic /camera/rgb/image_raw, use:  
-`rosrun image_view image_view image:=/udacity_bot/camera1/image_raw`  
+`$ rosrun image_view image_view image:=/udacity_bot/camera1/image_raw`  
+
+## Mapping
+First check that you satisfy all dependencies by running: `$ rospack find gmapping`  
+You can use this robot to build a map since it includes the required odometry and laser sensor.
+The inluded launch file `mapping.launch` will start Gazebo, load a predetermined world, and start the package **gmapping** properly configured, along with all other nodes required, including Rviz.  
+To move the robot around a telop node is also required, for instance you can use:  
+`$ rosrun rqt_robot_steering rqt_robot_steering`  
+At the beginning there could be no map in Rviz, you may need to wait few second until it is generated.  
 
 ## Known Issues
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
