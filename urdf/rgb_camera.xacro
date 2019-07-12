@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+   <link name="camera">
+      <inertial>
+         <mass value="0.1" />
+         <origin xyz="0.0 0 0" rpy="0 0 0" />
+         <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+      </inertial>
+      <collision name="camera_collision">
+         <origin xyz="0.0 0 0" rpy="0 0 0" />
+         <geometry>
+            <box size="0.02 0.05 0.05" />
+         </geometry>
+      </collision>
+      <visual name="camera_visual">
+         <origin xyz="0 0 0" rpy="0 0 0" />
+         <geometry>
+            <mesh filename="package://udacity_bot/meshes/camera.dae" />
+         </geometry>
+      </visual>
+   </link>
+
+   <joint type="fixed" name="camera_joint">
+      <!-- Determine offset distance and orientation with respect to the parent link (here: chassis) -->
+      <origin xyz="0.205 0.0 0.07" rpy="0 0 0" />
+      <child link="camera" />
+      <parent link="chassis" />
+   </joint>
+
+   <link name="camera_tf_frame" />
+   <joint name="camera_tf_frame_joint" type="fixed">
+      <!-- Determine offset distance and orientation with respect to the parent link (here: chassis) -->
+      <origin xyz="0.205 0.0 0.07" rpy="1.57079 3.14159 1.57079" />
+      <parent link="chassis" />
+      <child link="camera_tf_frame" />
+   </joint>
+
+</robot>

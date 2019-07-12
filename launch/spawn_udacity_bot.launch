@@ -10,8 +10,12 @@
 <arg name="robotBaseFrame" default="robot_footprint" />
 <arg name="diff_drive_publishTf" default="true" />
 <arg name="diff_drive_publishOdomTF" default="true" />
-<!-- Configure ground truth odometry Gazebo plugin -->
+
+<!-- Establish whether to run the ground truth odometry Gazebo plugin (boolean) -->
 <arg name="p3d_base_controller_enabled" default="false" />
+
+<!-- Determine presence of a regular RGB Camera sensor and the corresponding Gazebo plugin (boolean) -->
+<arg name="add_camera_sensor" default="true" />
 
 <!-- Send URDF to parameter server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find udacity_bot)/urdf/udacity_bot.xacro'
@@ -20,7 +24,8 @@
                                            robotBaseFrame:=$(arg robotBaseFrame)
                                            diff_drive_publishTf:=$(arg diff_drive_publishTf)
                                            diff_drive_publishOdomTF:=$(arg diff_drive_publishOdomTF)
-                                           p3d_base_controller_enabled:=$(arg p3d_base_controller_enabled)" />
+                                           p3d_base_controller_enabled:=$(arg p3d_base_controller_enabled)
+                                           add_camera_sensor:=$(arg add_camera_sensor)" />
 
 <!-- Send joint values from simulation -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
