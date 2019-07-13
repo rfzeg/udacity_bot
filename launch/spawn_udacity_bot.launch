@@ -17,6 +17,9 @@
 <!-- Determine presence of a regular RGB Camera sensor and the corresponding Gazebo plugin (boolean) -->
 <arg name="add_camera_sensor" default="true" />
 
+<!-- Determine presence of a Laser sensor and the corresponding Gazebo plugin (boolean) -->
+<arg name="add_laser_sensor" default="true" />
+
 <!-- Send URDF to parameter server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find udacity_bot)/urdf/udacity_bot.xacro'
                                            odometryTopic:=$(arg odometryTopic)
@@ -25,7 +28,8 @@
                                            diff_drive_publishTf:=$(arg diff_drive_publishTf)
                                            diff_drive_publishOdomTF:=$(arg diff_drive_publishOdomTF)
                                            p3d_base_controller_enabled:=$(arg p3d_base_controller_enabled)
-                                           add_camera_sensor:=$(arg add_camera_sensor)" />
+                                           add_camera_sensor:=$(arg add_camera_sensor)
+                                           add_laser_sensor:=$(arg add_laser_sensor)" />
 
 <!-- Send joint values from simulation -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

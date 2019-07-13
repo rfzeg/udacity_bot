@@ -9,8 +9,11 @@
 <xacro:arg name="diff_drive_publishTf" default="true" />
 <xacro:arg name="diff_drive_publishOdomTF" default="true" />
 
-<!-- Determine presence of camera sensor -->
+<!-- Determine presence of RGB camera sensor -->
 <xacro:arg name="add_camera_sensor" default="true" />
+
+<!-- Determine presence of Hokuyo laser sensor -->
+<xacro:arg name="add_laser_sensor" default="true" />
 
 <!-- Configure ground truth odometry Gazebo plugin -->
 <xacro:arg name="p3d_base_controller_enabled" default="false" />
@@ -57,7 +60,6 @@
       </geometry>
     </visual>
 
-
     <collision name='back_caster_collision'>
       <origin xyz="-0.15 0 -0.1" rpy=" 0 0 0"/>
       <geometry>
@@ -87,7 +89,6 @@
     </visual>
 
   </link>
-
 
 <joint type="continuous" name="left_wheel_hinge">
     <origin xyz="0 0.15 -0.05" rpy="0 0 0"/>
@@ -173,40 +174,13 @@
   <xacro:include filename="$(find udacity_bot)/urdf/rgb_camera.gazebo"/>
 </xacro:if>
 
-<!-- Laser -->
+<!-- Add a Hokuyo laser scanner -->
 
-<link name="hokuyo">
-    <pose>0 0 0.1 0 0 0</pose>
-
-    <inertial>
-      <mass value="0.1"/>
-      <origin xyz="0.0 0 0" rpy="0 0 0"/>
-      <inertia
-          ixx="0.0001" ixy="0" ixz="0"
-          iyy="0.0001" iyz="0"
-          izz="0.0001"
-      />
-    </inertial>
-
-    <collision name='hokuyo_collision'>
-      <origin xyz="0.0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.1 0.1 0.1"/>
-      </geometry>
-    </collision>
-
-    <visual name='hokuyo_visual'>
-      <origin xyz="0.0 0 0" rpy="0 0 0"/>
-      <geometry>
-         <mesh filename="package://udacity_bot/meshes/hokuyo.dae"/>
-      </geometry>
-    </visual>
-  </link>
-
-<joint type="fixed" name="hokuyo_joint">
-    <origin xyz="0.135 0 0.09" rpy="0 0 0"/> <!-- 0.15 -->
-    <child link="hokuyo"/>
-    <parent link="chassis"/>
-  </joint>
+<xacro:if value="$(arg add_laser_sensor)">
+  <!-- Add Laser link, joints and mesh -->
+  <xacro:include filename="$(find udacity_bot)/urdf/hokuyo_laser.xacro"/>
+  <!-- Add Gazebo Laser Plugin -->
+  <xacro:include filename="$(find udacity_bot)/urdf/hokuyo_laser.gazebo"/>
+</xacro:if>
 
 </robot>
